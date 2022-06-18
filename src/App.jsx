@@ -1,26 +1,19 @@
-import { useState } from "react";
 import "./App.css";
 import ActCard from "./components/ActCard";
 import { Grid, Container } from "@mui/material";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
+
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Create from "./pages/Create";
+import Signup from "./pages/Signup";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <Container>
-      <Grid container spacing={5}>
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-        <ActCard />
-      </Grid>
+      what it dooo
     </Container>
   );
 }

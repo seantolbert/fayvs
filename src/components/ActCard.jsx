@@ -3,7 +3,7 @@ import { AccessTime } from "@mui/icons-material";
 
 export default function ActCard() {
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12}>
       <Paper elevation={16} square>
         <img
           className="img"
