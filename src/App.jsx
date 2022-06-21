@@ -10,12 +10,14 @@ import Login from "./pages/Login";
 import Create from "./pages/Create";
 import Signup from "./pages/Signup";
 import MobileNav from "./components/MobileNav";
+import {LocalizationProvider} from '@mui/x-date-pickers'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
 
 function App() {
   const { user, authIsReady } = useAuthContext();
 
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <BrowserRouter>
         <Container>
           <Routes>
@@ -25,7 +27,7 @@ function App() {
           <MobileNav />
         </Container>
       </BrowserRouter>
-    </>
+    </LocalizationProvider>
   );
 }
 

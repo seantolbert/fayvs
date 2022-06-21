@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../firebase/config";
 import { addDoc, collection } from "firebase/firestore";
 
+import { DatePicker } from "@mui/x-date-pickers";
+
 import {
   FormControl,
   MenuItem,
@@ -12,7 +14,7 @@ import {
   TextField,
   Box,
   Typography,
-  Button
+  Button,
 } from "@mui/material";
 
 const categories = [
@@ -24,6 +26,8 @@ const categories = [
 ];
 
 export default function Create() {
+  const [selectedDate, setSelectedDate] = useState(null);
+
   return (
     <Box>
       <Typography variant="h2" component="h2">
@@ -34,6 +38,14 @@ export default function Create() {
       </FormControl>
       <FormControl fullWidth>
         <TextField id="outlined-basic" label="Link" variant="outlined" />
+      </FormControl>
+      <FormControl>
+        <DatePicker
+          label="Date"
+          renderInput={(params) => <TextField {...params} />}
+          value={selectedDate}
+          onChange={(newValue) => setSelectedDate(newValue)}
+        />
       </FormControl>
       <FormControl fullWidth>
         <Checkbox />
