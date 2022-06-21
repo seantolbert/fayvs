@@ -27,11 +27,13 @@ const categories = [
 
 export default function Create() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const current = new Date()
+  const dateToday = `${current.getMonth()}/${current.getDate()}/${current.getFullYear()}`
 
   return (
     <Box>
       <Typography variant="h2" component="h2">
-        Create
+        Create {dateToday}
       </Typography>
       <FormControl fullWidth>
         <TextField id="outlined-basic" label="Title" variant="outlined" />
@@ -47,6 +49,7 @@ export default function Create() {
           onChange={(newValue) => setSelectedDate(newValue)}
         />
       </FormControl>
+      <Button onClick={() => setSelectedDate(dateToday)}>Today</Button>
       <FormControl fullWidth>
         <Checkbox />
       </FormControl>
