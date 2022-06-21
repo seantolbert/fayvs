@@ -25,7 +25,7 @@ const categories = [
 
 export default function Create() {
   return (
-    <div>
+    <Box>
       <Typography variant="h2" component="h2">
         Create
       </Typography>
@@ -56,6 +56,6 @@ export default function Create() {
         />
       </FormControl>
       <Button></Button>
-    </div>
+    </Box>
   );
 }

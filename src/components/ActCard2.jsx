@@ -12,25 +12,30 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
+import CheckIcon from '@mui/icons-material/Check';
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
+import { Check } from "@mui/icons-material";
 
 export default function ActCard2({ act }) {
   return (
-    <TimelineItem>
-      <TimelineOppositeContent color="text.secondary">
-        {act.date}
-      </TimelineOppositeContent>
-      <TimelineSeparator>
-        <TimelineDot color={act.color} />
-        <TimelineConnector />
-      </TimelineSeparator>
-      <TimelineContent>
-        <Card elevation={20}>
-          <CardHeader title={act.title} />
-          <CardContent>{act.notes}</CardContent>
-          {act.completed}
-          {act.category}
-        </Card>
-      </TimelineContent>
-    </TimelineItem>
+    <>
+      <TimelineItem>
+        <TimelineOppositeContent color="text.secondary">
+          {act.date}
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color={act.color} />
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Card elevation={20}>
+            <CardHeader title={act.title} />
+            <CardContent>{act.notes}</CardContent>
+            {act.completed ? <CheckIcon/> : <NewReleasesIcon />}
+            {act.category}
+          </Card>
+        </TimelineContent>
+      </TimelineItem>
+    </>
   );
 }

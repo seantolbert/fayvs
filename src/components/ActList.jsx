@@ -11,6 +11,7 @@ export default function ActList() {
       notes:
         "backend paired with react with hosting capabilities, authentication, and realtime database",
       category: "course",
+      id: 20
     },
     {
       title: "BlogoRoddy",
@@ -19,6 +20,7 @@ export default function ActList() {
       date: "4/15/2022",
       notes: "historical blog",
       category: "Website",
+      id: 21
     },
     {
       title: "Achiever",
@@ -27,13 +29,14 @@ export default function ActList() {
       date: "6/20/2022",
       notes: "recording achievments and resources",
       category: "Website",
+      id: 22
     },
   ];
 
   return (
     <Timeline position="alternate">
       {acts.map((act) => (
-        <ActCard2 key={act.title} act={act} />
+        <ActCard2 key={act.id} act={act} />
       ))}
     </Timeline>
   );
