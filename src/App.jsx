@@ -8,13 +8,16 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Create from "./pages/Create";
 import Signup from "./pages/Signup";
+import MobileNav from "./context/MobileNav";
 
 function App() {
-
   return (
-    <Container>
-      what it dooo
-    </Container>
+    <>
+      <Container>
+        <Dashboard />
+      </Container>
+      <MobileNav />
+    </>
   );
 }
 
