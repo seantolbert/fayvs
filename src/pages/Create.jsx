@@ -76,7 +76,6 @@ export default function Create() {
 
   const handleSelecteChange = (e) => {
     setCategory(e.target.value);
-    console.log(category)
   };
 
   return (
