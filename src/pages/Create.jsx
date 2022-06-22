@@ -34,13 +34,12 @@ export default function Create() {
   const navigate = useNavigate();
 
   // user context
-  // const { user } = useAuthContext();
+  const { user } = useAuthContext();
 
   // form values
   const [selectedDate, setSelectedDate] = useState(null);
   const [notes, setNotes] = useState("");
   const [hyplink, setHyplink] = useState("");
-  const [tstamp, setTstamp] = useState("");
   const [category, setCategory] = useState("");
   const [completed, setCompleted] = useState(false);
   const [title, setTitle] = useState("");
@@ -52,20 +51,20 @@ export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // telling backend which database to store in
-    // const ref = collection(db, "acts")
+    const ref = collection(db, "acts")
 
     // addDoc is a firebase method for submitting data
-    // await addDoc(ref, {
-    //   title, notes, hyplink, tstamp, category, completed, uid: user.uid
-    // })
+    await addDoc(ref, {
+      title, notes, hyplink, selectedDate, category, completed, uid: user.uid
+    })
     console.log(
       title,
       notes,
       hyplink,
       selectedDate,
       category,
-      completed
-      // user.uid
+      completed,
+      user.uid
     );
     navigate("/");
   };

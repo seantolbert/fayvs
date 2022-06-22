@@ -10,23 +10,42 @@ import Create from "./pages/Create";
 import Signup from "./pages/Signup";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+const theme = createTheme({
+  components: {
+    MuiTimelineItem: {
+      styleOverrides: {
+        missingOppositeContent: {
+          display: "none",
+        },
+      },
+    },
+  },
+});
 function App() {
   const { user, authIsReady } = useAuthContext();
+  console.dir(user);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <BrowserRouter>
-        <Container>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </Container>
-      </BrowserRouter>
-    </LocalizationProvider>
+    <>
+      {authIsReady && (
+        <ThemeProvider theme={theme}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <BrowserRouter>
+              <Container>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/create" element={<Create />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                </Routes>
+              </Container>
+            </BrowserRouter>
+          </LocalizationProvider>
+        </ThemeProvider>
+      )}
+    </>
   );
 }
 

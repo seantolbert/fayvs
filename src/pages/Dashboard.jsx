@@ -9,7 +9,7 @@ import MobileNav from "../components/MobileNav";
 export default function Dashboard() {
   const [currentFilter, setCurrentFilter] = useState("all");
   const { user } = useAuthContext();
-  // const { documents: acts } = useCollection("acts", ["uid", "==", user.uid]);
+  const { documents: acts } = useCollection("acts", ["uid", "==", user.uid]);
 
   const changeFilter = (newFilter) => {
     setCurrentFilter(newFilter);
@@ -22,7 +22,7 @@ export default function Dashboard() {
       </Typography>
 
       <ActFilter currentFilter={currentFilter} changeFilter={changeFilter} />
-      <ActList />
+      {acts && <ActList acts={acts}/>}
       <MobileNav />
     </div>
   );
