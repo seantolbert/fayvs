@@ -1,5 +1,4 @@
 import { formatDistanceToNow } from "date-fns";
-
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
@@ -23,19 +22,13 @@ export default function ActCard2({ act }) {
 
   const DateContainer = styled("div")({
     fontSize: "0.7rem",
+    color: ''
   });
 
   const Title = styled("div")({
     fontSize: "2rem",
   });
 
-  const CompletionContainer = styled("div")({
-    color: "#f7f7f7",
-    padding: 6,
-    // border: "1px solid red",
-  });
-
-  console.log(act.selectedDate)
   return (
     <>
       <TimelineItem>
@@ -70,7 +63,7 @@ export default function ActCard2({ act }) {
             </div>
             <div>{act.notes}</div>
             <div>
-              <a rel="noreferrer" target="_blank" href={act.hypelink}>
+              <a rel="noreferrer" target="_blank" href={act.hyplink}>
                 <LinkIcon />
               </a>
             </div>

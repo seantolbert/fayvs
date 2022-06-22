@@ -7,14 +7,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import {useLogout} from '../hooks/useLogout'
+
 const navItems = [
   { icon: <CreateIcon />, name: "Create", link: "/create" },
   { icon: <HomeIcon />, name: "Home", link: "/" },
   { icon: <LoginIcon />, name: "Login", link: "/login" },
-  { icon: <LogoutIcon />, name: "Logout", link: "/logout" },
 ];
 
 export default function MobileNav() {
+  const {logout} = useLogout()  
+
   return (
     <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
@@ -30,6 +33,11 @@ export default function MobileNav() {
             tooltipTitle={item.name}
           />
         ))}
+        <SpeedDialAction 
+          icon={<LogoutIcon />}
+          onClick={logout}
+          tooltipTitle="Logout"
+        />
       </SpeedDial>
     </Box>
   );

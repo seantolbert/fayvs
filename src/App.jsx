@@ -29,22 +29,34 @@ function App() {
 
   return (
     <>
-      {authIsReady && (
-        <ThemeProvider theme={theme}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          {authIsReady && (
             <BrowserRouter>
               <Container>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/create" element={<Create />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
+                  <Route
+                    path="/"
+                    element={user ? <Dashboard /> : <Navigate to="/login" />}
+                  />
+                  <Route
+                    path="/create"
+                    element={user ? <Create /> : <Navigate to="/login" />}
+                  />
+                  <Route
+                    path="/login"
+                    element={!user ? <Login /> : <Navigate to="/" />}
+                  />
+                  <Route
+                    path="/signup"
+                    element={!user ? <Signup /> : <Navigate to="/" />}
+                  />
                 </Routes>
               </Container>
             </BrowserRouter>
-          </LocalizationProvider>
-        </ThemeProvider>
-      )}
+          )}
+        </LocalizationProvider>
+      </ThemeProvider>
     </>
   );
 }
