@@ -35,7 +35,7 @@ export default function ActList() {
   ];
 
   return (
-    <Timeline position="alternate">
+    <Timeline sx={{display: 'flex', justifyContent: 'start'}} position='alternate'>
       {acts.map((act) => (
         <ActCard2 key={act.id} act={act} />
       ))}

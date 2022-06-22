@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCollection } from "../hooks/useCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ActFilter from "../components/ActFilter";
+import MobileNav from "../components/MobileNav";
 
 export default function Dashboard() {
   const [currentFilter, setCurrentFilter] = useState("all");
@@ -22,6 +23,7 @@ export default function Dashboard() {
 
       <ActFilter currentFilter={currentFilter} changeFilter={changeFilter} />
       <ActList />
+      <MobileNav />
     </div>
   );
 }

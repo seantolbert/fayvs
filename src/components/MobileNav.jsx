@@ -19,7 +19,7 @@ export default function MobileNav() {
     <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="Mobile Navigation"
-        sx={{ position: "absolute", bottom: 16, right: 16 }}
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
         icon={<MenuIcon />}
       >
         {navItems.map((item) => (
