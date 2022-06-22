@@ -1,5 +1,6 @@
 import ActCard2 from "./ActCard2";
 import Timeline from "@mui/lab/Timeline";
+import ActCard3 from "./ActCard3";
 
 export default function ActList() {
   const acts = [
@@ -36,7 +37,7 @@ export default function ActList() {
   return (
     <Timeline position="alternate">
       {acts.map((act) => (
-        <ActCard2 key={act.id} act={act} />
+        <ActCard3 key={act.id} act={act} />
       ))}
     </Timeline>
   );

@@ -5,3 +5,7 @@
   box-sizing: border-box;
   /* border: 1px red solid; */
 }
+
+body {
+  background: #0992e1;
+}
