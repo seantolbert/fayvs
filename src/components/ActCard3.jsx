@@ -7,22 +7,20 @@ export default function ActCard3({ act }) {
     borderRadius: "20px",
     boxShadow: "14px 14px 28px #065c8e, -14px -14px 28px #0cc8ff",
     border: "none",
+    color: '#f7f7f7'
   });
 
   const Container = styled("div")({
     display: "flex",
-    flexWrap: 'wrap',
-    gap: '100px',
-
+    flexWrap: "wrap",
+    gap: "100px",
+    
   });
+
 
   return (
     <>
       <Container>
-        <Button>YOYO</Button>
-        <Button>YOYO</Button>
-        <Button>YOYO</Button>
-        <Button>YOYO</Button>
         <Button>YOYO</Button>
         <Button>YOYO</Button>
         <Button>YOYO</Button>

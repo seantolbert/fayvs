@@ -37,7 +37,7 @@ export default function ActList() {
   return (
     <Timeline position="alternate">
       {acts.map((act) => (
-        <ActCard3 key={act.id} act={act} />
+        <ActCard2 key={act.id} act={act} />
       ))}
     </Timeline>
   );
