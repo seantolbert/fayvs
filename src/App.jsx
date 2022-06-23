@@ -1,6 +1,5 @@
 import "./App.css";
-import ActCard from "./components/ActCard";
-import { Grid, Container } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
@@ -13,55 +12,53 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
-  components: {
-    MuiTimelineItem: {
-      styleOverrides: {
-        missingOppositeContent: {
-          display: 'none'
-        }
-      }
-    }
-  },
   palette: {
+    background: {
+      default: '#449DD1'
+    },
     primary: {
-      main: '#f7f7f7'
-    } 
-  }
+      main: "#449DD1",
+      light: "#78C0E0",
+      dark: "#192BC2",
+      darker: "#150578",
+      darkest: "#0E0E52",
+    },
+  },
 });
+
 function App() {
   const { user, authIsReady } = useAuthContext();
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          {authIsReady && (
-            <BrowserRouter>
-              <Container>
-                <Routes>
-                  <Route
-                    path="/"
-                    element={user ? <Dashboard /> : <Navigate to="/login" />}
-                  />
-                  <Route
-                    path="/create"
-                    element={user ? <Create /> : <Navigate to="/login" />}
-                  />
-                  <Route
-                    path="/login"
-                    element={!user ? <Login /> : <Navigate to="/" />}
-                  />
-                  <Route
-                    path="/signup"
-                    element={!user ? <Signup /> : <Navigate to="/" />}
-                  />
-                </Routes>
-              </Container>
-            </BrowserRouter>
-          )}
-        </LocalizationProvider>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <CssBaseline />
+        {authIsReady && (
+          <BrowserRouter>
+            <Container>
+              <Routes>
+                <Route
+                  path="/"
+                  element={user ? <Dashboard /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/create"
+                  element={user ? <Create /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/login"
+                  element={!user ? <Login /> : <Navigate to="/" />}
+                />
+                <Route
+                  path="/signup"
+                  element={!user ? <Signup /> : <Navigate to="/" />}
+                />
+              </Routes>
+            </Container>
+          </BrowserRouter>
+        )}
+      </LocalizationProvider>
+    </ThemeProvider>
   );
 }
 

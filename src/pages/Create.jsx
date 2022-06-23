@@ -46,17 +46,26 @@ export default function Create() {
 
   // today's date button
   const current = new Date();
-  const dateToday = `${current.getMonth()}/${current.getDate()}/${current.getFullYear()}`;
+  // const now = current.getMonth() + 1;
+  const dateToday = `${
+    current.getMonth() + 1
+  }/${current.getDate()}/${current.getFullYear()}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // telling backend which database to store in
-    const ref = collection(db, "acts")
+    const ref = collection(db, "acts");
 
     // addDoc is a firebase method for submitting data
     await addDoc(ref, {
-      title, notes, hyplink, selectedDate, category, completed, uid: user.uid
-    })
+      title,
+      notes,
+      hyplink,
+      selectedDate,
+      category,
+      completed,
+      uid: user.uid,
+    });
     console.log(
       title,
       notes,
@@ -67,6 +76,10 @@ export default function Create() {
       user.uid
     );
     navigate("/");
+  };
+
+  const handleChange = (e) => {
+    set;
   };
 
   const handleCheckbox = () => {
@@ -103,12 +116,14 @@ export default function Create() {
             />
           </FormControl>
           <FormControl>
-            {/* https://www.youtube.com/watch?v=OpaT8jLB-hc&t=266s&ab_channel=Codevolution great tutorial for MUI datepicker */}
             <DatePicker
               label="Date"
               renderInput={(params) => <TextField {...params} />}
               value={selectedDate}
-              onChange={(newValue) => setSelectedDate(newValue)}
+              onChange={(newValue) => {
+                setSelectedDate(newValue);
+                console.log(selectedDate);
+              }}
             />
           </FormControl>
           <Button onClick={() => setSelectedDate(dateToday)}>Today</Button>

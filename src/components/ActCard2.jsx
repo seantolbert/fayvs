@@ -72,11 +72,7 @@ export default function ActCard2({ act }) {
           <Content>
             <div>
               <Title>{act.title}</Title>
-              <DateContainer>
-                {formatDistanceToNow(new Date(act.selectedDate), {
-                  addSuffix: true,
-                })}
-              </DateContainer>
+              <DateContainer>{act.selectedDate}</DateContainer>
             </div>
             <div>{act.notes}</div>
             <div>
@@ -85,7 +81,7 @@ export default function ActCard2({ act }) {
                 rel="noreferrer"
                 target="_blank"
                 href={act.hyplink}
-                sx={{p:0}}
+                sx={{ p: 0 }}
               >
                 <LinkIcon />
               </IconButton>
