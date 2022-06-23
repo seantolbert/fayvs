@@ -35,7 +35,7 @@ export default function Dashboard() {
   return (
     <div>
       <Typography variant="h2" component="h1">
-        FAYVS of {user.email}
+        FAYVS
       </Typography>
 
       <ActFilter currentFilter={currentFilter} changeFilter={changeFilter} />

@@ -17,15 +17,19 @@ const theme = createTheme({
     MuiTimelineItem: {
       styleOverrides: {
         missingOppositeContent: {
-          display: "none",
-        },
-      },
-    },
+          display: 'none'
+        }
+      }
+    }
   },
+  palette: {
+    primary: {
+      main: '#f7f7f7'
+    } 
+  }
 });
 function App() {
   const { user, authIsReady } = useAuthContext();
-  console.dir(user);
 
   return (
     <>
