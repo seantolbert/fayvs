@@ -16,10 +16,14 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { deleteDoc, updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { TimelineOppositeContent } from "@mui/lab";
-import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
-import Box from '@mui/material/Box'
+import ChangeHistoryIcon from "@mui/icons-material/ChangeHistory";
+import Box from "@mui/material/Box";
+import { useState } from "react";
+import UpdateForm from "./UpdateForm";
 
 export default function ActCard2({ act, showDelete }) {
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+
   const Content = styled("div")({
     display: "flex",
     flexDirection: "column",
@@ -40,8 +44,8 @@ export default function ActCard2({ act, showDelete }) {
   };
 
   const handleUpdate = async (id) => {
-    
-  }
+    setShowUpdateForm(true);
+  };
 
   return (
     <>
@@ -49,12 +53,16 @@ export default function ActCard2({ act, showDelete }) {
         <TimelineOppositeContent>
           {showDelete && (
             <Box>
-              <IconButton onClick={() => handleDelete(act.id)} color="error">
-               Delete <ClearIcon />
+              <IconButton
+                label="Delete"
+                onClick={() => handleDelete(act.id)}
+                color="error"
+              >
+                <ClearIcon />
               </IconButton>
               <br />
               <IconButton onClick={() => handleUpdate(act.id)} color="success">
-                Edit <ChangeHistoryIcon />
+                <ChangeHistoryIcon />
               </IconButton>
             </Box>
           )}
@@ -102,6 +110,16 @@ export default function ActCard2({ act, showDelete }) {
           </Content>
         </TimelineContent>
       </TimelineItem>
+      {showDelete && showUpdateForm && (
+        <Box sx={{ display: "flex", justifyContent: "center", my: 4 }}>
+
+          <UpdateForm
+            showUpdateForm={showUpdateForm}
+            setShowUpdateForm={setShowUpdateForm}
+            act={act}
+          />
+        </Box>
+      )}
     </>
   );
 }
