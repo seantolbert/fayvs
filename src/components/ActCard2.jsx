@@ -12,42 +12,44 @@ import BuildIcon from "@mui/icons-material/Build";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import LinkIcon from "@mui/icons-material/Link";
 import { useState } from "react";
-import Button from "@mui/material/Button";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import { IconButton } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ClearIcon from "@mui/icons-material/Clear";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import { TimelineOppositeContent } from "@mui/lab";
 
-export default function ActCard2({ act }) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+export default function ActCard2({ act, showDelete }) {
   const Content = styled("div")({
     display: "flex",
     flexDirection: "column",
     gap: 7,
-    color: "#f7f7f7",
   });
 
   const DateContainer = styled("div")({
     fontSize: "0.7rem",
-    color: "",
   });
 
   const Title = styled("div")({
     fontSize: "2rem",
   });
 
+  const handleClick = async (id) => {
+    const docRef = doc(db, "acts", id);
+    await deleteDoc(docRef);
+  };
+
   return (
     <>
       <TimelineItem>
+        <TimelineOppositeContent>
+          {showDelete && (
+            <>
+              <IconButton onClick={() => handleClick(act.id)} color="error">
+                <ClearIcon />
+              </IconButton>
+            </>
+          )}
+        </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="primary">
             {act.category === "Course" ? (
@@ -66,13 +68,15 @@ export default function ActCard2({ act }) {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent
-        // sx={{ borderLeft: "2px solid lightgrey", transform: "translateX(16px)" }}
-        >
+        <TimelineContent>
           <Content>
             <div>
               <Title>{act.title}</Title>
-              <DateContainer>{act.selectedDate}</DateContainer>
+              <DateContainer>
+                {formatDistanceToNow(new Date(act.selectedDate), {
+                  addSuffix: true,
+                })}
+              </DateContainer>
             </div>
             <div>{act.notes}</div>
             <div>

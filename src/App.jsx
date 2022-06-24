@@ -10,31 +10,39 @@ import Signup from "./pages/Signup";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Navbar from './components/Navbar'
 
-const theme = createTheme({
-  palette: {
-    background: {
-      default: '#449DD1'
-    },
-    primary: {
-      main: "#449DD1",
-      light: "#78C0E0",
-      dark: "#192BC2",
-      darker: "#150578",
-      darkest: "#0E0E52",
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     shadows: {
+//       largeNeu: "10px 10px 20px #3a85b2, -10px -10px 20px #4eb5f0",
+//       largeInNeu:
+//         "inset 10px 10px 20px #3a85b2, inset -10px -10px 20px #4eb5f0",
+//       smallNeu: "5px 5px 9px #2f6c90, -5px -5px 9px #59ceff",
+//       smallInNeu: "inset 5px 5px 9px #2f6c90, inset -5px -5px 9px #59ceff",
+//     },
+//     background: {
+//       default: "#449DD1",
+//     },
+//     primary: {
+//       light: "#78C0E0",
+//       dark: "#192BC2",
+//       darker: "#150578",
+//       main: "#0E0E52",
+//     },
+//   },
+// });
 
 function App() {
   const { user, authIsReady } = useAuthContext();
 
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <CssBaseline />
         {authIsReady && (
           <BrowserRouter>
+            <Navbar />
             <Container>
               <Routes>
                 <Route
@@ -58,7 +66,7 @@ function App() {
           </BrowserRouter>
         )}
       </LocalizationProvider>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 

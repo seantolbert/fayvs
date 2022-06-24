@@ -4,15 +4,21 @@ import { useState } from "react";
 import { useCollection } from "../hooks/useCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ActFilter from "../components/ActFilter";
-import MobileNav from "../components/MobileNav";
+import Switch from "@mui/material/Switch";
+import { FormGroup, FormControlLabel } from "@mui/material";
 
 export default function Dashboard() {
   const [currentFilter, setCurrentFilter] = useState("all");
   const { user } = useAuthContext();
   const { documents: acts } = useCollection("acts", ["uid", "==", user.uid]);
+  const [showDelete, setShowDelete] = useState(false);
 
   const changeFilter = (newFilter) => {
     setCurrentFilter(newFilter);
+  };
+
+  const handleShowDelete = () => {
+    setShowDelete(!showDelete);
   };
 
   const actz = acts
@@ -34,13 +40,14 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Typography variant="h2" component="h1">
-        FAYVS
-      </Typography>
-
       <ActFilter currentFilter={currentFilter} changeFilter={changeFilter} />
-      {acts && <ActList acts={actz} />}
-      <MobileNav />
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch value={showDelete} onChange={handleShowDelete} />}
+          label="Edit"
+        />
+      </FormGroup>
+      {acts && <ActList acts={actz} showDelete={showDelete} />}
     </div>
   );
 }
