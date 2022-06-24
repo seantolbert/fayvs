@@ -24,21 +24,33 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Typography component="h2" variant="h2">
-        Login
-      </Typography>
-      <TextField
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        name="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button>log in</button>
-    </form>
+    <Container maxWidth="xs" sx={{ mt: "15%" }}>
+      <form onSubmit={handleSubmit}>
+        <Grid container gap={4}>
+          <Typography component="h2" variant="h2">
+            Login
+          </Typography>
+          <FormControl fullWidth>
+            <TextField
+              label="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormControl>
+          <FormControl fullWidth>
+            <TextField
+              label="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          <Button type="submit">log in</Button>
+        </Grid>
+      </form>
+    </Container>
   );
 }
