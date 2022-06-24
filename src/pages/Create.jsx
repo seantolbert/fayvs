@@ -19,6 +19,7 @@ import {
   Button,
   FormControlLabel,
   Container,
+  Box,
 } from "@mui/material";
 
 // categories for the form select
@@ -37,20 +38,13 @@ export default function Create() {
   // user context
   const { user } = useAuthContext();
 
-  // form values
+  // form value states
   const [selectedDate, setSelectedDate] = useState("");
   const [notes, setNotes] = useState("");
   const [hyplink, setHyplink] = useState("");
   const [category, setCategory] = useState("");
   const [completed, setCompleted] = useState(false);
   const [title, setTitle] = useState("");
-
-  // today's date button
-  const current = new Date();
-
-  const dateToday = `${
-    current.getMonth() + 1
-  }/${current.getDate()}/${current.getFullYear()}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,15 +61,6 @@ export default function Create() {
       completed,
       uid: user.uid,
     });
-    console.log(
-      title,
-      notes,
-      hyplink,
-      selectedDate,
-      category,
-      completed,
-      user.uid
-    );
     navigate("/");
   };
 
@@ -83,18 +68,20 @@ export default function Create() {
     setCompleted(!completed);
   };
 
-  const handleSelecteChange = (e) => {
+  const handleSelectChange = (e) => {
     setCategory(e.target.value);
   };
 
+  // customized date input
   const DateInput = styled("input")({
     background: "transparent",
     borderRadius: "4px",
     padding: "14px",
     outline: "none",
-    border: "0.7px solid #3479a1",
+    border: "0.7px solid #c4c4c4",
     fontSize: "1rem",
-    color: "#1b3f54",
+    color: "#717171",
+    "&:focus": {},
   });
 
   return (
@@ -124,11 +111,16 @@ export default function Create() {
               />
             </FormControl>
             <FormControl>
-              <DateInput
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-              />
+              <Box sx={{ display: "flex" }}>
+                <DateInput
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                />
+                <Box sx={{ display: "flex", alignItems: "center", ml: 3 }}>
+                  Date
+                </Box>
+              </Box>
             </FormControl>
             <FormControl fullWidth>
               <FormControlLabel
@@ -136,7 +128,7 @@ export default function Create() {
                 control={
                   <Checkbox onChange={handleCheckbox} value={completed} />
                 }
-                label="completed"
+                label="Completed"
               />
             </FormControl>
             <FormControl fullWidth>
@@ -145,7 +137,7 @@ export default function Create() {
                 defaultValue=""
                 label="Category"
                 value={category.value}
-                onChange={handleSelecteChange}
+                onChange={handleSelectChange}
               >
                 {categories.map((item) => (
                   <MenuItem key={item.value} value={item.value}>

@@ -11,12 +11,13 @@ import LanguageIcon from "@mui/icons-material/Language";
 import BuildIcon from "@mui/icons-material/Build";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import LinkIcon from "@mui/icons-material/Link";
-import { useState } from "react";
 import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { TimelineOppositeContent } from "@mui/lab";
+import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
+import Box from '@mui/material/Box'
 
 export default function ActCard2({ act, showDelete }) {
   const Content = styled("div")({
@@ -33,21 +34,29 @@ export default function ActCard2({ act, showDelete }) {
     fontSize: "2rem",
   });
 
-  const handleClick = async (id) => {
+  const handleDelete = async (id) => {
     const docRef = doc(db, "acts", id);
     await deleteDoc(docRef);
   };
+
+  const handleUpdate = async (id) => {
+    
+  }
 
   return (
     <>
       <TimelineItem>
         <TimelineOppositeContent>
           {showDelete && (
-            <>
-              <IconButton onClick={() => handleClick(act.id)} color="error">
-                <ClearIcon />
+            <Box>
+              <IconButton onClick={() => handleDelete(act.id)} color="error">
+               Delete <ClearIcon />
               </IconButton>
-            </>
+              <br />
+              <IconButton onClick={() => handleUpdate(act.id)} color="success">
+                Edit <ChangeHistoryIcon />
+              </IconButton>
+            </Box>
           )}
         </TimelineOppositeContent>
         <TimelineSeparator>

@@ -5,7 +5,7 @@ import { useCollection } from "../hooks/useCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ActFilter from "../components/ActFilter";
 import Switch from "@mui/material/Switch";
-import { FormGroup, FormControlLabel } from "@mui/material";
+import { Box, FormControlLabel } from "@mui/material";
 
 export default function Dashboard() {
   const [currentFilter, setCurrentFilter] = useState("all");
@@ -39,15 +39,17 @@ export default function Dashboard() {
     : null;
 
   return (
-    <div>
-      <ActFilter currentFilter={currentFilter} changeFilter={changeFilter} />
-      <FormGroup>
+    <>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <ActFilter currentFilter={currentFilter} changeFilter={changeFilter} />
         <FormControlLabel
           control={<Switch value={showDelete} onChange={handleShowDelete} />}
           label="Edit"
+          labelPlacement="start"
+          sx={{ width: 10 }}
         />
-      </FormGroup>
+      </Box>
       {acts && <ActList acts={actz} showDelete={showDelete} />}
-    </div>
+    </>
   );
 }
