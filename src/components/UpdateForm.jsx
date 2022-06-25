@@ -6,6 +6,8 @@ import Stack from "@mui/material/Stack";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import { styled } from "@mui/system";
+import { updateDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const fields = [
   { value: "Title", label: "Title" },
@@ -31,7 +33,26 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
   const [newDate, setNewDate] = useState();
   const [newCategory, setNewCategory] = useState();
 
-  const handleSubmit = () => {};
+  const actRef = doc(db, "acts", act.id);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (chosenField === "Category") {
+      await updateDoc(actRef, { category: newCategory });
+    }
+    if (chosenField === "Title") {
+      await updateDoc(actRef, { title: newTitle });
+    }
+    if (chosenField === "Notes") {
+      await updateDoc(actRef, { notes: newNotes });
+    }
+    if (chosenField === "Link") {
+      await updateDoc(actRef, { hyplink: newLink });
+    }
+    if (chosenField === "Date") {
+      await updateDoc(actRef, { selectedDate: newDate });
+    }
+  };
 
   const DateInput = styled("input")({
     background: "transparent",
@@ -41,7 +62,7 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
     border: "0.7px solid #c4c4c4",
     fontSize: "1rem",
     color: "#717171",
-    "&:focus": {},
+    // "&:focus": {},
   });
 
   return (
@@ -67,8 +88,10 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
             <FormControl>
               <TextField
                 label="Title"
-                value={newTitle}
                 defaultValue={act.title}
+                onChange={(e) => {
+                  setNewTitle(e.target.value);
+                }}
               />
             </FormControl>
           )}
@@ -77,9 +100,10 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
               <TextField
                 multiline
                 rows={3}
-                value={newNotes}
                 defaultValue={act.notes}
                 label="Notes"
+                size="small"
+                onChange={(e) => setNewNotes(e.target.value)}
               />
             </FormControl>
           )}
@@ -87,14 +111,17 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
             <FormControl>
               <TextField
                 label="Link"
-                value={newLink}
                 defaultValue={act.hyplink}
+                onChange={(e) => setNewLink(e.target.value)}
               />
             </FormControl>
           )}
           {chosenField === "Date" && (
             <FormControl>
-              <DateInput type="date" value={newDate} />
+              <DateInput
+                type="date"
+                onChange={(e) => setNewDate(e.target.value)}
+              />
             </FormControl>
           )}
           {chosenField === "Category" && (
@@ -102,8 +129,8 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
               <TextField
                 label="Category"
                 select
-                value={newCategory}
-                defaultValue={act.category}
+                defaultValue=""
+                onChange={(e) => setNewCategory(e.target.value)}
               >
                 {categories.map((item) => (
                   <MenuItem key={item.value} value={item.value}>
@@ -115,7 +142,7 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
           )}
         </Stack>
         <Box>
-          <Button onClick={() => setShowUpdateForm(false)}>Update</Button>
+          <Button type="submit">Update</Button>
           <Button onClick={() => setShowUpdateForm(false)}>cancel</Button>
         </Box>
       </form>

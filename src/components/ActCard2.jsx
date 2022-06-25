@@ -13,7 +13,7 @@ import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import LinkIcon from "@mui/icons-material/Link";
 import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { deleteDoc, updateDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { TimelineOppositeContent } from "@mui/lab";
 import ChangeHistoryIcon from "@mui/icons-material/ChangeHistory";
