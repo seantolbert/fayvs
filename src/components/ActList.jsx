@@ -1,4 +1,7 @@
+// components
 import ActCard2 from "./ActCard2";
+
+// mui
 import Timeline from "@mui/lab/Timeline";
 
 export default function ActList({ acts, showDelete }) {

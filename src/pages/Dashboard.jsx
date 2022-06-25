@@ -1,11 +1,14 @@
-import { Typography } from "@mui/material";
-import ActList from "../components/ActList";
+// components & hooks
 import { useState } from "react";
 import { useCollection } from "../hooks/useCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
+import ActList from "../components/ActList";
 import ActFilter from "../components/ActFilter";
+
+// mui
+import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
-import { Box, FormControlLabel } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 export default function Dashboard() {
   const [currentFilter, setCurrentFilter] = useState("all");

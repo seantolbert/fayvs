@@ -35,29 +35,31 @@ export default function Signup() {
           </Typography>
           <FormControl fullWidth>
             <TextField
-            label="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+              label="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
           <FormControl fullWidth>
             <TextField
-            label="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+              label="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
           <FormControl fullWidth>
             <TextField
-            label="confirm"
+              label="confirm"
               name="password"
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
             />
           </FormControl>
-          <Button type='submit' disabled={disable}>sign up</Button>
+          <Button type="submit" disabled={disable}>
+            sign up
+          </Button>
         </Grid>
       </form>
     </Container>

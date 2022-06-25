@@ -1,13 +1,18 @@
+// firebase functions
+import { updateDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/config";
+
+// hooks
+import { useState } from "react";
+
+// mui
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import Stack from "@mui/material/Stack";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
-import { styled } from "@mui/system";
-import { updateDoc, doc } from "firebase/firestore";
-import { db } from "../firebase/config";
+import styled from "@mui/system/styled";
 
 const fields = [
   { value: "Title", label: "Title" },
@@ -62,7 +67,6 @@ export default function UpdateForm({ setShowUpdateForm, act }) {
     border: "0.7px solid #c4c4c4",
     fontSize: "1rem",
     color: "#717171",
-    // "&:focus": {},
   });
 
   return (
