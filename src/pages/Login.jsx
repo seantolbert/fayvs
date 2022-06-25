@@ -1,20 +1,20 @@
+// hooks 
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
-import { Link } from "react-router-dom";
-import {
-  TextField,
-  Typography,
-  Container,
-  Button,
-  Grid,
-  FormControl,
-} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
+// mui
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error } = useLogin();
+  const { login } = useLogin();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {

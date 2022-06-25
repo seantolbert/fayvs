@@ -1,14 +1,21 @@
-import "./App.css";
-import { Container, CssBaseline } from "@mui/material";
+// hooks
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
+// local components
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Create from "./pages/Create";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
+// mui
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
+
+// styling
+import "./App.css";
 
 function App() {
   const { user, authIsReady } = useAuthContext();

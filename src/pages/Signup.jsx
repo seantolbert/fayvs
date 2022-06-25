@@ -1,21 +1,21 @@
+// hooks
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
-import { Link } from "react-router-dom";
-import {
-  TextField,
-  Typography,
-  Container,
-  Button,
-  Grid,
-  FormControl,
-} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
+// mui
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const { error, signup } = useSignup();
+  const { signup } = useSignup();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
