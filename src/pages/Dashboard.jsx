@@ -9,6 +9,7 @@ import ActFilter from "../components/ActFilter";
 import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { Button, Typography } from "@mui/material";
 
 export default function Dashboard() {
   const [currentFilter, setCurrentFilter] = useState("all");
@@ -52,7 +53,36 @@ export default function Dashboard() {
           sx={{ width: 10 }}
         />
       </Box>
-      {acts && <ActList acts={actz} showDelete={showDelete} />}
+      {acts ? (
+        <ActList acts={actz} showDelete={showDelete} />
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            height: "70vh",
+          }}
+        >
+          <Typography
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: 35,
+            }}
+          >
+            Click Create to add your first event
+          </Typography>
+          <Button
+            href="/create"
+            sx={{ background: "#1876D1", color: "#fff", fontSize: 25 }}
+          >
+            CREATE
+          </Button>
+        </Box>
+      )}
     </>
   );
 }

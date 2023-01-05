@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
-import { Auth } from "../firebase/config";
+import { Auth, db } from "../firebase/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const useSignup = () => {
@@ -18,6 +18,5 @@ export const useSignup = () => {
         setError(err.message);
       });
   };
-
   return { error, signup };
 };

@@ -16,6 +16,7 @@ import Container from "@mui/material/Container";
 
 // styling
 import "./App.css";
+import Landing from "./components/Landing";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -30,7 +31,8 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={user ? <Dashboard /> : <Navigate to="/login" />}
+                // element={user ? <Dashboard /> : <Navigate to="/login" />}
+                element={user ? <Dashboard /> : <Landing />}
               />
               <Route
                 path="/create"
